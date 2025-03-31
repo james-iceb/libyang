@@ -3048,7 +3048,7 @@ lys_compile_node_leaf(struct lysc_ctx *ctx, struct lysp_node *pnode, struct lysc
     /* checks */
     if ((leaf->flags & LYS_SET_DFLT) && (leaf->flags & LYS_MAND_TRUE)) {
         LOGVAL(ctx->ctx, LYVE_SEMANTICS, "Invalid mandatory leaf with a default value.");
-        return LY_EVALID;
+        //return LY_EVALID;
     }
 
 done:
@@ -3111,7 +3111,7 @@ lys_compile_node_leaflist(struct lysc_ctx *ctx, struct lysp_node *pnode, struct 
     /* checks */
     if ((llist->flags & LYS_SET_DFLT) && (llist->flags & LYS_MAND_TRUE)) {
         LOGVAL(ctx->ctx, LYVE_SEMANTICS, "The default statement is present on leaf-list with a nonzero min-elements.");
-        return LY_EVALID;
+        //SKIP THIS FOR NOW return LY_EVALID;
     }
 
     if (llist->min > llist->max) {

@@ -4316,10 +4316,13 @@ parse_module(struct lysp_yang_ctx *ctx, struct lysp_module *mod)
 
     YANG_READ_SUBSTMT_FOR_GOTO(ctx, kw, word, word_len, ret, cleanup) {
 
-#define CHECK_ORDER(SECTION) \
-        if (mod_stmt > SECTION) {\
-            LOGVAL_PARSER(ctx, LY_VCODE_INORD, lyplg_ext_stmt2str(kw), lyplg_ext_stmt2str(prev_kw)); return LY_EVALID;\
-        } mod_stmt = SECTION
+//#define CHECK_ORDER(SECTION) \
+//        if (mod_stmt > SECTION) {\
+//            LOGVAL_PARSER(ctx, LY_VCODE_INORD, lyplg_ext_stmt2str(kw), lyplg_ext_stmt2str(prev_kw)); return LY_EVALID;\
+//        } mod_stmt = SECTION
+
+// Do *NOT* check the order to allow us to parse major telco. Yang models
+#define CHECK_ORDER(SECTION)
 
         switch (kw) {
         /* module header */
